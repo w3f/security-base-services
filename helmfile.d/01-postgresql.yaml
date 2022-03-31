@@ -7,7 +7,7 @@ repositories:
 releases:
   - name: postgresql-14
     chart: bitnami/postgresql
-    version: 11.1.4
+    version: 0.4.14
     namespace: postgresql
     # values:
     #   - ./config/postgresql-14-values.yaml.gotmpl
