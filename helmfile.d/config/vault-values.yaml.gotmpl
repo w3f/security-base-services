@@ -35,3 +35,7 @@ server:
       plugin_directory = "/usr/local/libexec/vault"
 ui:
   enabled: true
+injector:
+    webhook:
+      annotations: 
+      - argocd.argoproj.io/compare-options: IgnoreExtraneous
