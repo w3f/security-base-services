@@ -6,11 +6,11 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
-  project: previews
+  project: default
   source:
     repoURL: https://github.com/w3f/security-base-services.git
     targetRevision: HEAD
-    path: argocd/argocd-apps
+    path: argocd
   destination:
     server: https://kubernetes.default.svc
     namespace: secops-previews
