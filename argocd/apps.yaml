@@ -1,20 +1,17 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: secops-previews
-  namespace: argocd2
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
+  name: my-apps
 spec:
-  project: default
-  source:
-    repoURL: https://github.com/w3f/security-base-services.git
-    targetRevision: HEAD
-    path: argocd
   destination:
-    server: https://kubernetes.default.svc
-    namespace: secops-previews
+    namespace: default
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: argocd/argocd-apps
+    repoURL: 'https://gitlab.com/ayush-sharma/example-assets.git'
+    targetRevision: HEAD
+  project: default
   syncPolicy:
     automated:
-      selfHeal: true
       prune: true
+      selfHeal: true
