@@ -8,3 +8,4 @@ releases:
   - name: nginx-ingress
     chart: ingress-nginx/ingress-nginx
     version: 4.0.18
+    namespace: ingress-nginx
