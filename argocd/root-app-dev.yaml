@@ -12,5 +12,13 @@ spec:
   project: appbundle-project-dev
   source:
     path: argocd/apps-children/dev
-    repoURL: https://github.com/w3f/security-base-services
+    repoURL: https://github.com/w3f/security-base-services.git
     targetRevision: HEAD
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
+
+  
