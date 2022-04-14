@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: secops-previews
+  name: google-demo-app
   namespace: argocd2
 spec:
   project: appbundle-project-dev
