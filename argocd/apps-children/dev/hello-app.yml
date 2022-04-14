@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: secops-previews
+  namespace: argocd2
+spec:
+  project: appbundle-project-dev
+  source:
+    repoURL: https://github.com/GoogleCloudPlatform/kubernetes-engine-samples.git
+    targetRevision: HEAD
+    path: kubernetes-engine-samples/hello-app/manifests/
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd2
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
