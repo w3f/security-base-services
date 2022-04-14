@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: engineering-base-service
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: .
+    repoURL: 'https://gitlab.w3f.tech/infrastructure/engineering-base-services.git'
+    targetRevision: HEAD
+    plugin:
+      name: helmfile
+  project: default
+  syncPolicy:
+    automated: null
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
