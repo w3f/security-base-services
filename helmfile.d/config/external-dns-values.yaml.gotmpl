@@ -1,0 +1,17 @@
+rbac:
+  create: true
+
+provider: cloudflare
+
+cloudflare:
+  apiKey: {{ env "CLOUDFLARE_API_KEY" | default "cloudflareApiKey" }}
+  email: {{ env "CLOUDFLARE_EMAIL" | default "cloudflareEmail" }}
+  proxied: false
+
+logLevel: info
+txtOwnerId: "community"
+
+policy: sync
+
+domainFilters:
+  - w3f.dev
