@@ -8,4 +8,5 @@ releases:
   - name: nginx-ingress
     chart: ingress-nginx/ingress-nginx
     version: 4.0.18
-    namespace: ingress-nginx
+    values:
+      - ./config/nginx-ingress-values.yaml.gotmpl

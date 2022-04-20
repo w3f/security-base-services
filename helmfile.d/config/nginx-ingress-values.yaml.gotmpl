@@ -1,0 +1,29 @@
+controller:
+  publishService:
+    enabled: "true"
+  service:
+    externalTrafficPolicy: "Local"
+  replicaCount: 4
+  autoscaling:
+    enabled: true
+    minReplicas: 4
+    maxReplicas: 12 
+    targetCPUUtilizationPercentage: 70
+    targetMemoryUtilizationPercentage: 70
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+  config:
+    proxy-body-size: "10m"
+    use-http2: "false"
+    server-tokens: "false"
+  resources:
+    requests:
+      cpu: 20m
+      memory: 200Mi  
+  admissionWebhooks:
+    enabled: false    
+defaultBackend:
+  enabled: true
+  replicaCount: 2
