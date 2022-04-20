@@ -1,0 +1,63 @@
+## ArgoCD configuration
+## Ref: https://github.com/argoproj/argo-cd
+##
+## Server
+server:
+  extraArgs:
+  - --insecure
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt
+      nginx.ingress.kubernetes.io/whitelist-source-range: "35.216.233.11/32" # pritunl-vpn VM in main-infrastructure GCP project
+    ingressClassName: "nginx"
+    hosts:
+      - argocd.w3f.dev
+    tls:
+      - secretName: argocd-tls
+        hosts:
+        - argocd.w3f.dev
+  configEnabled: true
+  config:
+    url: https://argocd.w3f.dev
+    configManagementPlugins: |
+      - name: helmfile
+        init:                          # Optional command to initialize application source directory
+          command: ["argo-cd-helmfile.sh"]
+          args: ["init"]
+        generate:                      # Command to generate manifests YAML
+          command: ["argo-cd-helmfile.sh"]
+          args: ["generate"]
+
+## Argo Configs
+configs:
+  secret:
+    # -- Bcrypt hashed admin password
+    ## Argo expects the password in the secret to be bcrypt hashed. You can create this hash with
+    ## `htpasswd -nbBC 10 "" $ARGO_PWD | tr -d ':\n' | sed 's/$2y/$2a/'`
+    argocdServerAdminPassword: '{{ env "ARGOCD_ADMIN_PW" | default "argocd_password" }}'
+    argocdServerAdminPasswordMtime: "2022-02-28T14:24:00Z"
+repoServer:
+  volumes:
+  - name: custom-tools
+    emptyDir: {}
+
+  initContainers:
+  - name: download-tools
+    image: alpine:3.8
+    command: [sh, -c]
+    args:
+      - wget -qO /custom-tools/argo-cd-helmfile.sh https://raw.githubusercontent.com/travisghansen/argo-cd-helmfile/master/src/argo-cd-helmfile.sh &&
+        chmod +x /custom-tools/argo-cd-helmfile.sh &&
+        wget -qO /custom-tools/helmfile https://github.com/roboll/helmfile/releases/download/v0.138.7/helmfile_linux_amd64 &&
+        chmod +x /custom-tools/helmfile
+    volumeMounts:
+      - mountPath: /custom-tools
+        name: custom-tools
+  volumeMounts:
+  - mountPath: /usr/local/bin/argo-cd-helmfile.sh
+    name: custom-tools
+    subPath: argo-cd-helmfile.sh
+  - mountPath: /usr/local/bin/helmfile
+    name: custom-tools
+    subPath: helmfile

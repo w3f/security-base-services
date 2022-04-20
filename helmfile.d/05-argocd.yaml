@@ -1,0 +1,13 @@
+environments:
+  production:
+  ci:
+repositories:
+  - name: argocd
+    url: https://argoproj.github.io/argo-helm
+releases:
+  - name: argocd
+    chart: argocd/argo-cd
+    version: 3.33.8
+    namespace: argocd
+    values:
+      - ./config/argocd-values.yaml.gotmpl
