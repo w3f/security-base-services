@@ -8,5 +8,6 @@ releases:
   - name: external-dns
     chart: bitnami/external-dns
     version: 6.2.1
+    namespace: external-dns
     values:
       - ./config/external-dns-values.yaml.gotmpl
