@@ -1,5 +1,5 @@
 releases:
   - name: 1password-crd
-    namespace: 1password-connector
+    namespace: vault
     version: v0.1.0
     chart: ../crds-1password-connector
