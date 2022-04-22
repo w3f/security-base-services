@@ -1,6 +1,6 @@
 apiVersion: onepassword.com/v1
 kind: OnePasswordItem
 metadata:
-  name: VAULT-INIT-SEC #this name will also be used for naming the generated kubernetes secret
+  name: hello-world #this name will also be used for naming the generated kubernetes secret
 spec:
   itemPath: "vaults/dupiwmck6njge5gzo6butegbwy/items/f2iywenfuwrp7zwrseh3bew7iu" # hello-world
