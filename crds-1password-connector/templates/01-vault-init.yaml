@@ -1,0 +1,6 @@
+apiVersion: onepassword.com/v1
+kind: OnePasswordItem
+metadata:
+  name: vault-sec-init #this name will also be used for naming the generated kubernetes secret
+spec:
+  itemPath: "vaults/dupiwmck6njge5gzo6butegbwy/items/v7hel7gt4zvfwsjm5sdthq52lq" # vault-unseal-keys
