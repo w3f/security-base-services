@@ -109,26 +109,23 @@ spec:
     api_addr: "http://vault.vault:8200"
     disable_mlock: true
     plugin_directory: "/usr/local/libexec/vault"
+
+  externalConfig:
     plugins:
       - plugin_name: op-connect
         command: op-connect
         sha256: 7ce3e44c1a5f17e5f9b8dafd7a4c604b86ea862a69e5d2f12684cb0f136f5ba2
         type: secret
-
-  externalConfig:
     secrets:
-      - path: secret
-        type: kv
-        description: General secrets.
-        options:
-          version: 2
       - path: op
         type: plugin
         plugin_name: op-connect
+      - path: op
+        type: kv # We need to fool the code in accepting no config path
         configuration:
           config:
-            op_connect_host: "http://{{ .Values.op_connector_service }}.svc.cluster.local:8080"
-            op_connect_token: {{ .Values.op_connect_token }}
+          - op_connect_host: "http://{{ .Values.op_connector_service }}.svc.cluster.local:8080"
+          - op_connect_token: {{ .Values.op_connect_token }}
 
   istioEnabled: false
 
