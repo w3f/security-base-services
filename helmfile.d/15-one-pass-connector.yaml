@@ -6,7 +6,6 @@ repositories:
     url: https://1password.github.io/connect-helm-charts
 releases:
   - name: 1password-connector
-    namespace: 1password-connector
     chart: 1password/connect
     version: v1.7.1
     values:
