@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   labels:
-  name: node-test
+  name: node-test2
   namespace: argocd
 spec:
   destination:
