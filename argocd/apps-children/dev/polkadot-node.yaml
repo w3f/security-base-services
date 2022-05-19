@@ -7,7 +7,7 @@ spec:
     server: 'https://kubernetes.default.svc'
   source:
     path: .
-    repoURL: 'https://gitlab.w3f.tech/infrastructure/engineering-base-services.git'
+    repoURL: 'https://github.com/w3f/polkadot-internal-deployment.git'
     targetRevision: HEAD
     plugin:
       name: helmfile
