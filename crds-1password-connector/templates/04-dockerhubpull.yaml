@@ -1,0 +1,7 @@
+apiVersion: onepassword.com/v1
+kind: OnePasswordItem
+metadata:
+  name: dockerhubpull #this name will also be used for naming the generated kubernetes secret
+  namespace: ci-commons
+spec:
+  itemPath: "vaults/dupiwmck6njge5gzo6butegbwy/items/xsv42qku4rblm4mjwnasv6o5fi" # uid for 1password item

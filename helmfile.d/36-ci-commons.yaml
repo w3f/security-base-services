@@ -1,0 +1,10 @@
+environments:
+  production:
+  ci:
+releases:
+  - name: ci-commons
+    namespace: vault
+    version: v0.1.0
+    chart: ../ci-commons
+    values:
+    - ./config/ci-commons-vaules.yaml.gotmpl
