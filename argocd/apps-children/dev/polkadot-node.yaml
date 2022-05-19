@@ -1,19 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: engineering-base-service
+  labels:
+  name: node-test
+  namespace: argocd
 spec:
   destination:
     server: 'https://kubernetes.default.svc'
+  project: default
   source:
     path: .
-    repoURL: 'https://github.com/w3f/polkadot-internal-deployment.git'
-    targetRevision: HEAD
     plugin:
       name: helmfile
-  project: default
+    repoURL: 'https://github.com/w3f/polkadot-internal-deployment.git'
+    targetRevision: HEAD
   syncPolicy:
     automated: null
     syncOptions:
       - CreateNamespace=true
       - ApplyOutOfSyncOnly=true
+
