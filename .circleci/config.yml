@@ -1,0 +1,26 @@
+version: 2
+
+jobs:
+  helmLint:
+    docker:
+      - image: web3f/ci-commons:v3.0.0
+    steps:
+      - checkout
+      - run:
+          environment:
+            HELM_ENV: production
+            CLUSTER: security
+            
+          command: |
+            ./scripts/deploy.sh 
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - helmLint:
+          context: gcp_security_access
+          filters:
+            tags:
+              only: /.*/
+      

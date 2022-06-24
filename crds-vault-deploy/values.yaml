@@ -1,5 +1,0 @@
----
-namespace: 'vault'
-vault_version: 1.9.3
-op_connector_service: 'onepassword-connect.default'
-op_connect_token: '<Your OPC token>'

@@ -1,10 +1,13 @@
-# environments:
-#   production:
-#   ci:
-# releases:
-#   - name: vault-deployment-crds
-#     namespace: vault
-#     version: v0.1.0
-#     chart: ../crds-vault-deploy
-#     values:
-#     - ./config/vault-crd-vaules.yaml.gotmpl
+environments:
+  production:
+  ci:
+repositories:
+  - name: banzaicloud-stable
+    url: https://kubernetes-charts.banzaicloud.com
+releases:
+  - name: vault-operator
+    namespace: vault
+    chart: banzaicloud-stable/vault-operator
+    version: 1.15.8
+    values:
+      - ./config/bank-vault-values.yaml.gotmpl
