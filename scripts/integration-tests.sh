@@ -10,7 +10,7 @@ run_tests() {
 
 integration_test_sequence(){
   echo Running intergration tests...
-  wait_pod_ready metrics kube-system
+  wait_pod_ready vault-0 vault 3/3
 
 }
 
