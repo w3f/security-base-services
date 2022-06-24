@@ -9,7 +9,9 @@ jobs:
       - run:
           environment:
             HELM_ENV: production
-            CLUSTER: security
+            CLUSTER: rbac-gcp
+            GCP_REGION: europe-central2-a
+            GCP_PROJECT: security-330311
             
           command: |
             chmod +x ./scripts/deploy.sh 
