@@ -8,6 +8,7 @@ jobs:
       - checkout
       - run:
           environment:
+          
             HELM_ENV: production
             CLUSTER: rbac-gcp
             GCP_REGION: europe-central2-a
