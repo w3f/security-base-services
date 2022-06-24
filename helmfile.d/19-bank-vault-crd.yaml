@@ -2,12 +2,12 @@ environments:
   production:
   ci:
 repositories:
-  - name: banzaicloud-stable
-    url: https://kubernetes-charts.banzaicloud.com
+  - name: w3f
+    url: https://w3f.github.io/helm-charts
 releases:
-  - name: vault-operator
+  - name: bank-vault-deploy-crds
+    chart: w3f/bank-vault-deploy-crds
+    version: v0.1.0
     namespace: vault
-    chart: banzaicloud-stable/vault-operator
-    version: 1.15.8
     values:
-      - ./config/bank-vault-values.yaml.gotmpl
+      - ./config/bank-vault-deploy-crds-values.yaml.gotmpl
