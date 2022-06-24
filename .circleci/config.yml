@@ -34,13 +34,13 @@ jobs:
 
 workflows:
   version: 2
-    test_and_deploy:
+  test_and_deploy:
     jobs:
       - integrationTests:
           filters:
             tags:
               only: /.*/
-              
+
       - deploy:
           context: 
           - gcp_security_access
