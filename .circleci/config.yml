@@ -1,0 +1,21 @@
+version: 2
+
+jobs:
+  helmLint:
+    docker:
+      - image: web3f/ci-commons:v3.0.0
+    steps:
+      - checkout
+      - run:
+          command: |
+            echo "Done"
+
+workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - helmLint:
+          filters:
+            tags:
+              only: /.*/
+      
