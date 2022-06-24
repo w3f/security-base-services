@@ -1,14 +1,28 @@
 version: 2
 
 jobs:
-  helmLint:
+
+  integrationTests:
     docker:
-      - image: web3f/ci-commons:v3.0.0
+      - image: web3f/ci-commons:v3.1.6
+    resource_class: xlarge
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          description: run integration tests
+          command: |
+            /scripts/integration-tests.sh kindest/node:v1.21.1
+
+  deploy:
+    docker:
+      - image: web3f/ci-commons:v3.1.6
+    resource_class: xlarge
     steps:
       - checkout
       - run:
+          description: deploy to cluster
           environment:
-          
             HELM_ENV: production
             CLUSTER: rbac-gcp
             GCP_REGION: europe-central2-a
@@ -22,9 +36,17 @@ workflows:
   version: 2
   test_and_deploy:
     jobs:
-      - helmLint:
-          context: gcp_security_access
+      - deploy:
+          context: 
+          - gcp_security_access
+          - vault_security
+          - argoCD
+          - cloudflare
           filters:
+            branches:
+              ignore: /.*/
             tags:
-              only: /.*/
+              only: /^v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/
+          requires:
+            - integrationTests
       
