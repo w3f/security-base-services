@@ -1,6 +1,0 @@
-# This is not a great way to create CRDS & it makes the sysadmin in me cry :(
-# a customization tool that cant handle custom resource definitions see ==> https://helm.sh/docs/chart_best_practices/custom_resource_definitions/
-
-name: crds-vault-deploy
-version: v0.1.0
-description: A Helm chart
