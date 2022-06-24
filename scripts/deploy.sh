@@ -9,7 +9,7 @@ set -e
 source /scripts/common.sh
 
 helm repo update
-helmfile --environment $HELM_ENV -f ./helmfile.pre.d sync
+# helmfile --environment $HELM_ENV -f ./helmfile.pre.d sync
 
 wait_pod_ready cert-manager-webhook cert-manager
 
