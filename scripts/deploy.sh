@@ -2,6 +2,7 @@
 set -e
 
 
+
 /scripts/get-kubeconfig.sh ${CLUSTER}
 /scripts/bootstrap-helm.sh
 
