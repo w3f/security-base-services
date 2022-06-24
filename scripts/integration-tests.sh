@@ -30,7 +30,7 @@ main(){
         trap teardown EXIT
     fi
 
-    #cert-manager
+    cert-manager
 
     source /scripts/build-helmfile.sh
 
