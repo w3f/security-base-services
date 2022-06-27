@@ -8,6 +8,6 @@ releases:
   - name: vault-operator
     namespace: vault
     chart: banzaicloud-stable/vault-operator
-    version: v1.15.5
+    version: 1.15.6
     values:
       - ./config/bank-vault-values.yaml.gotmpl
