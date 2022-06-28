@@ -7,7 +7,7 @@ repositories:
 releases:
   - name: base-services
     chart: w3f/base-services
-    version: v1.6.0
+    version: v1.6.1
     namespace: monitoring
     values:
       - ./config/base-services-values.yaml.gotmpl
