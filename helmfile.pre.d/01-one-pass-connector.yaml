@@ -7,6 +7,6 @@ repositories:
 releases:
   - name: 1password-connector
     chart: 1password/connect
-    version: 1.7.1
+    version: 1.8.0
     values:
       - ./config/1password-connect-values.yaml.gotmpl
