@@ -7,7 +7,7 @@ repositories:
 releases:
   - name: kube-prometheus-stack
     chart: prometheus-community/kube-prometheus-stack
-    version: 36.2.1
+    version: 36.3.0
     namespace: monitoring
     values:
       - ./config/kube-prometheus-stack-values.yaml.gotmpl
