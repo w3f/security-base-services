@@ -8,5 +8,10 @@
   },
   "helmfile": {
     "fileMatch": ["helmfile.*.yaml"]
+  },
+  "kubernetes": {
+    "fileMatch": ["helmfile.*.yaml.gotmpl"]
   }
 }
+
+
