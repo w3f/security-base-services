@@ -8,5 +8,8 @@
   },
   "helmfile": {
     "fileMatch": ["helmfile.d/.*\\.yaml"]
+  },
+  "helmfile.pre": {
+    "fileMatch": ["helmfile.pre.d/.*\\.yaml"]
   }
 }
