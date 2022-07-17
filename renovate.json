@@ -6,10 +6,7 @@
   "argocd": {
     "fileMatch": ["argocd/.*\\.yaml"]
   },
-  "kubernetes": {
-    "fileMatch": ["helmfile.d/.*\\.yaml"]
-  },
   "helmfile": {
-    "fileMatch": ["helmfile.pre.d/.*\\.yaml"]
+    "fileMatch": ["*/.*\\.yaml"]
   }
 }
