@@ -7,9 +7,6 @@
     "fileMatch": ["argocd/.*\\.yaml"]
   },
   "helmfile": {
-    "fileMatch": ["helmfile.d/.*\\.yaml"]
-  },
-  "helmfile.pre": {
-    "fileMatch": ["helmfile.pre.d/.*\\.yaml"]
+    "fileMatch": ["helmfile.*.yaml"]
   }
 }
