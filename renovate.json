@@ -10,7 +10,7 @@
     "fileMatch": ["helmfile.*.yaml"]
   },
   "kubernetes": {
-    "fileMatch": ["helmfile.*.yaml.gotmpl"]
+    "fileMatch": [".*.yaml.gotmpl"]
   },
   "packageRules": [
 		{
