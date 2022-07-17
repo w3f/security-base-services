@@ -11,7 +11,24 @@
   },
   "kubernetes": {
     "fileMatch": ["helmfile.*.yaml.gotmpl"]
-  }
+  },
+  "packageRules": [
+		{
+		  "matchPackagePatterns": ["web3f/ci-commons"],
+		  "addLabels": ["web3f"],
+		  "matchUpdateTypes": ["minor", "patch"],
+		  "automerge": true,
+		  "automergeType": "pr",
+      "platformAutomerge": true
+		},
+    {
+		  "matchPackagePatterns": ["*"],
+		  "matchUpdateTypes": ["patch"],
+		  "automerge": true,
+		  "automergeType": "pr",
+      "platformAutomerge": true
+		}
+  ]
 }
 
 
