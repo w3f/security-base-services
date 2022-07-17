@@ -2,5 +2,14 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base"
-  ]
+  ],
+  "argocd": {
+    "fileMatch": ["argocd/.*\\.yaml"]
+  },
+  "kubernetes": {
+    "fileMatch": ["helmfile.d/.*\\.yaml"]
+  },
+  "helmfile": {
+    "fileMatch": ["helmfile.pre.d/.*\\.yaml"]
+  }
 }
