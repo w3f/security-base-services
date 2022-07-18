@@ -2,8 +2,9 @@ environment: {{ .Environment.Name }}
 
 origin: security
 
-cloudflareApiToken: {{ env "CLOUDFLARE_TOKEN" | default "cf_token" }}
-
+{{ if ne .Environment.Name "ci" }}
+cloudflareApiToken: {{ "ref+vault://op/vaults/k8s-security-secrets/items/base-services-cf-token?proto=http#password" | fetchSecretValue }}
+{{ end }}
 
 alertRules:
   namespace: monitoring
