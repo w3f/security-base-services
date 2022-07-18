@@ -37,7 +37,9 @@ configs:
     # -- Bcrypt hashed admin password
     ## Argo expects the password in the secret to be bcrypt hashed. You can create this hash with
     ## `htpasswd -nbBC 10 "" $ARGO_PWD | tr -d ':\n' | sed 's/$2y/$2a/'`
+    {{ if ne .Environment.Name "ci" }}
     argocdServerAdminPassword: {{ "ref+vault://op/vaults/k8s-security-secrets/items/ARGOCD_ADMIN_PW?proto=http#password" | fetchSecretValue }}
+    {{ end }}
     argocdServerAdminPasswordMtime: "2022-02-28T14:24:00Z"
 repoServer:
   volumes:
