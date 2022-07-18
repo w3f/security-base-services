@@ -1,6 +1,7 @@
 origin: security
+{{ if ne .Environment.Name "ci" }}
 cloudflareApiToken: {{ "ref+vault://op/vaults/k8s-security-secrets/items/base-services-cf-token?proto=http#password" | fetchSecretValue }}
-
+{{ end }}
 commonLabels:
   group: w3f
 
@@ -28,7 +29,9 @@ kubeStateMetrics:
 
 grafana:
   enabled: true
+  {{ if ne .Environment.Name "ci" }}
   adminPassword: {{ "ref+vault://op/vaults/k8s-security-secrets/items/grafana-dashboard-adminPassword?proto=http#password" | fetchSecretValue }}
+  {{ if ne .Environment.Name "ci" }}
   ingress:
     enabled: true
     annotations:
