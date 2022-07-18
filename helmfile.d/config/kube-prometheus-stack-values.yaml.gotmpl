@@ -27,17 +27,17 @@ kubeStateMetrics:
       memory: 16Mi
 {{ end }}
 
+{{ if ne .Environment.Name "ci" }}
 grafana:
   enabled: true
-  {{ if ne .Environment.Name "ci" }}
   adminPassword: {{ "ref+vault://op/vaults/k8s-security-secrets/items/grafana-dashboard-adminPassword?proto=http#password" | fetchSecretValue }}
-  {{ end }}
   ingress:
     enabled: true
     annotations:
       kubernetes.io/ingress.class: "nginx"
       prometheus.io/port: 9216
       prometheus.io/scrape: true
+{{ end }}
 
 {{ if ne .Environment.Name "ci" }}
       cert-manager.io/cluster-issuer: letsencrypt
