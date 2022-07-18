@@ -9,7 +9,9 @@ server:
     enabled: true
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt
+{{ if ne .Environment.Name "ci" }}
       nginx.ingress.kubernetes.io/whitelist-source-range: {{ "ref+vault://op/vaults/k8s-security-secrets/items/pritunl-vpn-address?proto=http#password" | fetchSecretValue }} # pritunl-vpn VM in main-infrastructure GCP project
+{{ end }}
     ingressClassName: "nginx"
     hosts:
       - argocd.w3f.dev
