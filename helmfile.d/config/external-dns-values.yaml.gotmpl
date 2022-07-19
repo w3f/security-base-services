@@ -4,10 +4,11 @@ rbac:
 provider: cloudflare
 
 cloudflare:
-  apiKey: {{ env "CLOUDFLARE_API_KEY" | default "cloudflareApiKey" }}
-  email: {{ env "CLOUDFLARE_EMAIL" | default "cloudflareEmail" }}
+{{ if ne .Environment.Name "ci" }}
+  apiKey: {{ "ref+vault://op/vaults/k8s-security-secrets/items/base-services-cf-token?proto=http#password" | fetchSecretValue }}
+  email: {{ "ref+vault://op/vaults/k8s-security-secrets/items/base-services-cf-email?proto=http#password" | fetchSecretValue }}
   proxied: false
-
+{{ end }}
 logLevel: info
 txtOwnerId: "security"
 

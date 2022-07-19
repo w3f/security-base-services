@@ -9,7 +9,9 @@ server:
     enabled: true
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt
-      nginx.ingress.kubernetes.io/whitelist-source-range: "35.216.233.11/32" # pritunl-vpn VM in main-infrastructure GCP project
+{{ if ne .Environment.Name "ci" }}
+      nginx.ingress.kubernetes.io/whitelist-source-range: {{ "ref+vault://op/vaults/k8s-security-secrets/items/pritunl-vpn-address?proto=http#password" | fetchSecretValue }} # pritunl-vpn VM in main-infrastructure GCP project
+{{ end }}
     ingressClassName: "nginx"
     hosts:
       - argocd.w3f.dev
@@ -35,8 +37,10 @@ configs:
     # -- Bcrypt hashed admin password
     ## Argo expects the password in the secret to be bcrypt hashed. You can create this hash with
     ## `htpasswd -nbBC 10 "" $ARGO_PWD | tr -d ':\n' | sed 's/$2y/$2a/'`
-    argocdServerAdminPassword: '{{ env "ARGOCD_ADMIN_PW" | default "argocd_password" }}'
-    argocdServerAdminPasswordMtime: "2022-02-28T14:24:00Z"
+    {{ if ne .Environment.Name "ci" }}
+    argocdServerAdminPassword: {{ "ref+vault://op/vaults/k8s-security-secrets/items/ARGOCD_ADMIN_PW?proto=http#password" | fetchSecretValue }}
+    {{ end }}
+    argocdServerAdminPasswordMtime: '{{ now | quote}}'
 repoServer:
   volumes:
   - name: custom-tools
