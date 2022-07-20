@@ -65,9 +65,9 @@ main(){
     pre_sync_check
     source /scripts/build-helmfile.sh
     run_tests
-    benchmark_crd_pool
+    
 
-    if [[ $? -ne 0 ]] ; then
+    if ! benchmark_crd_pool ; then
       echo "CRD MISMATCH"
       echo "Warning: This PR Is altering cluster behaivior ..."
     else
