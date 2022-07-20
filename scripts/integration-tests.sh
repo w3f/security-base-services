@@ -55,6 +55,10 @@ benchmark_crd_pool() {
    diff -w -N  -b -B -q /scripts/CLUSTER_CRD_MATRIX.txt /scripts/INTEGRATION.txt
 }
 
+teardown() {
+  helmfile delete --purge
+}
+
 
 main(){
 
