@@ -52,7 +52,7 @@ benchmark_crd_pool() {
   
   done
   
-   diff -c /scripts/CLUSTER_CRD_MATRIX.txt /scripts/INTEGRATION.txt
+   diff -w -b -B -q /scripts/CLUSTER_CRD_MATRIX.txt /scripts/INTEGRATION.txt
 }
 
 
