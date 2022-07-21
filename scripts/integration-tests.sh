@@ -51,7 +51,7 @@ benchmark_crd_pool() {
     wait
   
   done
-  cat /scripts/CLUSTER_CRD_MATRIX.txt  
+  cat ~/project/scripts/CLUSTER_CRD_MATRIX.txt  
   #  diff -w -N  -b -B -q /scripts/CLUSTER_CRD_MATRIX.txt /scripts/INTEGRATION.txt
 }
 
