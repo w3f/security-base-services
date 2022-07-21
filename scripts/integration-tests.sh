@@ -47,12 +47,16 @@ benchmark_crd_pool() {
       CRD_VERSION=$(kubectl describe crd "${CRD}" |  grep -e "Manager::*." | head -1 | cut -f2 -d ":" | xargs)
     fi
     wait
-    echo "export $CRD_CONTEXT_VENDOR_DOMAIN=$CRD_VERSION" # >> /scripts/INTEGRATION.txt
+    echo "export $CRD_CONTEXT_VENDOR_DOMAIN=$CRD_VERSION"  >> /scripts/INTEGRATION.txt
     wait
   
   done
-  cat ~/project/scripts/CLUSTER_CRD_MATRIX.txt  
-  #  diff -w -N  -b -B -q /scripts/CLUSTER_CRD_MATRIX.txt /scripts/INTEGRATION.txt
+  echo "##################################################################"
+  cat ~/project/scripts/CLUSTER_CRD_MATRIX.txt
+  echo "##################################################################"
+  cat /scripts/INTEGRATION.txt
+  echo "##################################################################"
+  diff -w -N  -b -B -q ~/project/scripts/CLUSTER_CRD_MATRIX.txt /scripts/INTEGRATION.txt
 }
 
 teardown() {
