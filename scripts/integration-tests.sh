@@ -51,11 +51,6 @@ benchmark_crd_pool() {
     wait
   
   done
-  echo "##################################################################"
-  cat ~/project/scripts/CLUSTER_CRD_MATRIX.txt
-  echo "##################################################################"
-  cat /scripts/INTEGRATION.txt
-  echo "##################################################################"
   diff -w -N  -b -B -q ~/project/scripts/CLUSTER_CRD_MATRIX.txt /scripts/INTEGRATION.txt
 }
 
@@ -78,8 +73,13 @@ main(){
     if ! benchmark_crd_pool ; then
       echo "CRD MISMATCH"
       echo "Warning: This PR Is altering cluster behaivior ..."
+      echo "##################################################################"
+      cat ~/project/scripts/CLUSTER_CRD_MATRIX.txt
+      echo "##################################################################"
+      cat /scripts/INTEGRATION.txt
+      echo "##################################################################"
     else
-      echo "controller-gen.kubebuilder.io/version: Static"
+      echo "controller-applications: Static"
     fi
 
 }
