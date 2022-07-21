@@ -47,12 +47,11 @@ benchmark_crd_pool() {
       CRD_VERSION=$(kubectl describe crd "${CRD}" |  grep -e "Manager::*." | head -1 | cut -f2 -d ":" | xargs)
     fi
     wait
-    echo "export $CRD_CONTEXT_VENDOR_DOMAIN=$CRD_VERSION" >> /scripts/INTEGRATION.txt
+    echo "export $CRD_CONTEXT_VENDOR_DOMAIN=$CRD_VERSION"  >> /scripts/INTEGRATION.txt
     wait
   
   done
-  
-   diff -w -N  -b -B -q /scripts/CLUSTER_CRD_MATRIX.txt /scripts/INTEGRATION.txt
+  diff -w -N  -b -B -q ~/project/scripts/CLUSTER_CRD_MATRIX.txt /scripts/INTEGRATION.txt
 }
 
 teardown() {
@@ -74,8 +73,13 @@ main(){
     if ! benchmark_crd_pool ; then
       echo "CRD MISMATCH"
       echo "Warning: This PR Is altering cluster behaivior ..."
+      echo "##################################################################"
+      cat ~/project/scripts/CLUSTER_CRD_MATRIX.txt
+      echo "##################################################################"
+      cat /scripts/INTEGRATION.txt
+      echo "##################################################################"
     else
-      echo "controller-gen.kubebuilder.io/version: Static"
+      echo "controller-applications: Static"
     fi
 
 }
