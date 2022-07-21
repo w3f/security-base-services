@@ -32,11 +32,6 @@ grafana:
     enabled: true
     annotations:
       kubernetes.io/ingress.class: "nginx"
-      prometheus.io/port: 9216
-      prometheus.io/scrape: true
-{{ end }}
-
-{{ if ne .Environment.Name "ci" }}
       cert-manager.io/cluster-issuer: letsencrypt
       nginx.ingress.kubernetes.io/whitelist-source-range: {{ "ref+vault://op/vaults/k8s-security-secrets/items/pritunl-vpn-address?proto=http#password" | fetchSecretValue }} # pritunl-vpn VM in main-infrastructure GCP project
       nginx.ingress.kubernetes.io/server-snippet: |
