@@ -82,7 +82,7 @@ prometheus:
 {{ if ne .Environment.Name "ci" }}
     resources:
       requests:
-        cpu: 500m
+        cpu: 100m
         memory: 2Gi
       limits:
         cpu: 700m
@@ -93,6 +93,6 @@ prometheus:
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:
-              storage: 50Gi
+              storage: 10Gi
 {{ end }}
 
