@@ -54,9 +54,9 @@ repoServer:
       - wget -qO /custom-tools/argo-cd-helmfile.sh https://raw.githubusercontent.com/travisghansen/argo-cd-helmfile/master/src/argo-cd-helmfile.sh &&
         chmod +x /custom-tools/argo-cd-helmfile.sh &&
         wget -qO /custom-tools/helmfile https://github.com/roboll/helmfile/releases/download/v0.138.7/helmfile_linux_amd64 &&
-        chmod +x /custom-tools/helmfile
-         wget -qO argocd-vault-plugin https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v1.6.0/argocd-vault-plugin_1.6.0_linux_amd64 &&
-        chmod +x argocd-vault-plugin && mv argocd-vault-plugin /custom-tools
+        chmod +x /custom-tools/helmfile &&
+         wget -qO /custom-tools/argocd-vault-plugin https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v1.6.0/argocd-vault-plugin_1.6.0_linux_amd64 &&
+        chmod +x /custom-tools/argocd-vault-plugin 
     volumeMounts:
       - mountPath: /custom-tools
         name: custom-tools
@@ -70,3 +70,5 @@ repoServer:
   - mountPath: /usr/local/bin/argocd-vault-plugin
     name: custom-tools
     subPath: argocd-vault-plugin
+
+
